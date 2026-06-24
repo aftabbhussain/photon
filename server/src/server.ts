@@ -1,5 +1,5 @@
 import { WebSocketServer, WebSocket } from "ws";
-import { SignalingMessage } from "./types";
+import { SignalingMessage } from "./types/types";
 import dotenv from 'dotenv'
 
 import {RoomManager} from './roomManager'
@@ -55,8 +55,34 @@ wss.on('connection', (ws: WebSocket) => {
                     }
                     break;
                 }
+                case 'offer' :
+                case 'answer' :
+                case 'ice-candidate' : {
+                    const meta = roomManager.getPeer(ws);
+                    if(!meta){
+                        send(ws, {type : 'error', payload : {message : 'No socket to peer mapping found, join a room first'}});
+                        return;
+                    }
+                    const room = roomManager.getRoom(meta.roomCode);
+                    if(!room){
+                        return;
+                    }
+                    const targetPeer = room.peers.find(peer => peer.id !== meta.peerId);
+                    if(targetPeer){
+                        send(targetPeer.socket, {type : parsed.type, payload : {
+                            ...parsed.payload,
+                            senderId : meta.peerId
+                        }});
+                        console.log(`Relayed [${parsed.type}] from [${meta.peerId}] to [${targetPeer.id}]`);
+                    }
+                    else{
+                        console.log(`Relay delayed for [${parsed.type}] from [${meta.peerId}]: Partner not connected yet.`);
+                    }
+                    break;
+
+                }
                 default :
-                    send(ws, {type : 'error', payload : {message : `Action ${parsed.type} is unhandled at this stage`}});
+                    send(ws, {type : 'error', payload : {message : `Action ${parsed.type} is unsupported at this stage`}});
             }
         }
         catch(err){
