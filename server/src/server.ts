@@ -1,7 +1,6 @@
 import { WebSocketServer, WebSocket } from "ws";
 import { SignalingMessage } from "./types/types";
 import dotenv from 'dotenv'
-
 import {RoomManager} from './roomManager'
 
 dotenv.config();
