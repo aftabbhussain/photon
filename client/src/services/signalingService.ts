@@ -31,6 +31,7 @@ export class SignalingService{
 
         }
         this.ws.send(JSON.stringify({type, payload}));
+
     }
     public disconnect(){
         if(this.ws){
