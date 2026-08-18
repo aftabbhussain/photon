@@ -8,12 +8,7 @@ export class WebRTCService{
     constructor(callbacks : WebRTCServiceCallbacks){
         this.callbacks = callbacks;
     }
-    public terminate(){
-        if(!this.pc) return;
-
-        this.pc.close();
-        this.pc = null;
-    }
+    
     public initialize() : RTCPeerConnection {
         this.terminate();
         this.pc = new RTCPeerConnection(CONFIG.configuration);
@@ -34,6 +29,7 @@ export class WebRTCService{
         this.callbacks.onDataChannelCaptured(channel);
         return channel;
     }
+    
     public setupRemoteDataChannelListener(){
         if(!this.pc) return;
 
@@ -67,6 +63,12 @@ export class WebRTCService{
     
         await this.pc.addIceCandidate(new RTCIceCandidate(candidateInit));
         
+    }
+    public terminate(){
+        if(!this.pc) return;
+
+        this.pc.close();
+        this.pc = null;
     }
 
 }
