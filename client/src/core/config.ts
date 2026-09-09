@@ -11,7 +11,7 @@ export const CONFIG = {
     },
     STREAMING : {
         CHUNK_SIZE : 16*1024,
-        BUFFER_CEILING : 1024*1024,
-        BUFFER_FLOOR : 256*1024
+        BUFFER_HIGH : 1024*1024,
+        BUFFER_LOW : 256*1024
     }
 }
