@@ -8,7 +8,7 @@ export class WebRTCService{
     constructor(callbacks : WebRTCServiceCallbacks){
         this.callbacks = callbacks;
     }
-    
+
     public initialize() : RTCPeerConnection {
         this.terminate();
         this.pc = new RTCPeerConnection(CONFIG.configuration);
@@ -21,7 +21,7 @@ export class WebRTCService{
             this.callbacks.onConnectionStateChange(this.pc?.connectionState);
         }
         return this.pc;
-    }
+    }   
     public createLocalDataChannel(label : string) : RTCDataChannel{
         if(!this.pc) throw new Error('RTCPeerConnection is not initiliazed');
 
@@ -29,7 +29,6 @@ export class WebRTCService{
         this.callbacks.onDataChannelCaptured(channel);
         return channel;
     }
-    
     public setupRemoteDataChannelListener(){
         if(!this.pc) return;
 
