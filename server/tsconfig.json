@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "node16",
+    "ignoreDeprecations": "5.0",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
+}
