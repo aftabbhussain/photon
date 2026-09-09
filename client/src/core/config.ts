@@ -1,7 +1,7 @@
 const signalingURL = import.meta.env.SIGNALING_SERVER || "ws://localhost:8080";
 
 export const CONFIG = {
-    SIGNALING_SERVER_URL : signalingURL,
+    SIGNALING_URL : signalingURL,
     configuration : {
         iceServers : [
             {
