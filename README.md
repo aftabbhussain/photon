@@ -25,71 +25,14 @@ and room management.
 -   WebSocket (`ws`)
 -   WebRTC
 
-## Project Structure
-
-``` text
-photon/
-├── client/
-│   ├── src/
-│   │   ├── core/
-│   │   ├── services/
-│   │   ├── types/
-│   │   ├── workers/
-│   │   ├── App.tsx
-│   │   └── main.tsx
-│   ├── .env
-│   ├── .gitignore
-│   ├── .oxlintrc.json
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── README.md
-│   ├── tsconfig.app.json
-│   ├── tsconfig.json
-│   ├── tsconfig.node.json
-│   ├── vercel.json
-│   └── vite.config.ts
-│
-├── server/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── handlers/
-│   │   ├── managers/
-│   │   ├── types/
-│   │   ├── roomManager.ts
-│   │   └── server.ts
-│   ├── .env
-│   ├── .gitignore
-│   ├── dist/
-│   ├── node_modules/
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── Readme.md
-│   └── tsconfig.json
-│
-└── .gitignore
-```
 
 ## Architecture
 
 The application consists of a React client and a Node.js WebSocket
 signaling server.
 
-``` text
-Browser A
-    │
-    │ WebSocket
-    ▼
-Signaling Server
-    │
-    │ WebSocket
-    ▼
-Browser B
+<img width="1774" height="887" alt="image" src="https://github.com/user-attachments/assets/83643b3c-59a3-43f8-ad69-f418087ce47a" />
 
-Browser A ◄──── WebRTC DataChannel ────► Browser B
-                         │
-                    File Transfer
-```
 
 The WebSocket server is responsible for signaling between peers. The
 actual file data is transferred through the WebRTC DataChannel.
