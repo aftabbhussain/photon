@@ -1,4 +1,5 @@
-const signalingURL = import.meta.env.SIGNALING_SERVER || "ws://localhost:8080";
+export const signalingURL = 
+  import.meta.env.VITE_SIGNALING_SERVER_URL || 'wss://photon-signaling-service.onrender.com';
 
 export const CONFIG = {
     SIGNALING_URL : signalingURL,

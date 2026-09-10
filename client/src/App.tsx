@@ -1,4 +1,4 @@
-import React,{useEffect,useState,useRef} from 'react';
+import {useEffect,useState,useRef} from 'react';
 import {createRoot} from 'react-dom/client';
 import {CONFIG} from './core/config.js';
 import {SignalingService} from './services/signalingService.js';
