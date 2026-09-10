@@ -2,8 +2,16 @@ import { WebSocketServer, WebSocket } from "ws";
 import { SignalingMessage } from "./types/types";
 import dotenv from 'dotenv'
 import {RoomManager} from './roomManager'
-
+import http from 'http';
+import express from 'express';
 dotenv.config();
+
+const app = express();
+const server = http.createServer(app);
+
+app.get('/', (_req, res) => {
+  res.status(200).send({ status: 'healthy', service: 'signaling-server' });
+});
 
 const roomManager = new RoomManager();
 
