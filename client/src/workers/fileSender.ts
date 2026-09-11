@@ -1,13 +1,14 @@
 import {CONFIG} from '../core/config.js';
 export interface FileSenderCallbacks{
-  onProgress: (bytesSent: number, totalBytes: number) => void;
+  onProgress: (bytesSent: number, totalBytes: number, speedBps: number) => void;
   onComplete: () => void;
   onError: (error: string) => void;
 }
 export class FileSender{
   private dataChannel: RTCDataChannel;
   private callbacks: FileSenderCallbacks;
-  private isCancelled = false;
+  private cancelled = false;
+  
 
   constructor(dataChannel: RTCDataChannel, callbacks: FileSenderCallbacks){
     this.dataChannel = dataChannel;
@@ -18,6 +19,9 @@ export class FileSender{
   public async streamFile(file: File): Promise<void> {
     let offset = 0;
     const totalBytes = file.size;
+    let lastTime = performance.now();
+    let lastOffset = 0;
+    let currentSpeedBps = 0;
 
     console.log(`Launching data channel transfer loop for: ${file.name} (${totalBytes} bytes)`);
     if (this.dataChannel.readyState === 'open') {
@@ -29,7 +33,10 @@ export class FileSender{
       this.callbacks.onError('Data channel pipeline is closed. Execution halted.');
       return;
     }
-    while(offset < totalBytes && !this.isCancelled){
+    while(offset < totalBytes && !this.cancelled){
+      if (this.cancelled) {
+    return;
+  }
       if (this.dataChannel.bufferedAmount > CONFIG.STREAMING.BUFFER_HIGH){
         await new Promise<void>((resolve) =>{
           this.dataChannel.onbufferedamountlow = () => {
@@ -46,14 +53,23 @@ export class FileSender{
         }
         this.dataChannel.send(chunk);
         offset += chunk.byteLength;
-        this.callbacks.onProgress(offset, totalBytes);
+
+        const now = performance.now();
+        const elapsed = (now - lastTime) / 1000;
+        if (elapsed >= 0.15) {
+          currentSpeedBps = (offset - lastOffset) / elapsed;
+          lastTime = now;
+          lastOffset = offset;
+        }
+
+        this.callbacks.onProgress(offset, totalBytes, currentSpeedBps);
       } 
       catch(err: any){
         this.callbacks.onError(`Stream read failure: ${err?.message || err}`);
         return;
       }
     }
-    if(!this.isCancelled){
+    if(!this.cancelled){
       this.dataChannel.send(JSON.stringify({ type: 'eof'}));
       this.callbacks.onComplete();
       console.log('Binary stream sequence sent.');
@@ -76,7 +92,7 @@ export class FileSender{
     });
   }
   public cancel(): void {
-    this.isCancelled = true;
+    this.cancelled = true;
     console.log('Stream tracking manually cancelled by user.');
   }
 }
