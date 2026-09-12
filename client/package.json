@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^1.45.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "jsqr": "^1.4.0",
+    "lucide-react": "^1.44.0",
+    "qrcode.react": "^4.2.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",
