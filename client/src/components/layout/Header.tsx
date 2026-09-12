@@ -39,7 +39,6 @@ export const Header: React.FC<HeaderProps> = ({
     >
       <header className="max-w-[1480px] mx-auto px-4 md:px-8 py-3 md:py-4">
         <div className="flex items-center justify-between gap-6">
-          {/* LOGO */}
           <div
             className="flex items-center cursor-pointer select-none shrink-0"
             onClick={() =>
@@ -53,8 +52,6 @@ export const Header: React.FC<HeaderProps> = ({
               Photon
             </span>
           </div>
-
-          {/* CENTER NAV */}
           <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center">
             <div
               className={`
@@ -63,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
               max-h-11
               rounded-full
               transition-all duration-300
-              ${isScrolled ? "bg-white/70" : "bg-[#f5f5f5] border-[#dedede]"}
+              ${isScrolled ? "bg-white" : "bg-white border-[#dedede]"}
             `}
             >
               <a
@@ -112,10 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
             </div>
           </nav>
-
-          {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-2.5 shrink-0">
-            {/* ROOM STATUS */}
             <div
               className="
               flex items-center gap-2
@@ -141,8 +135,6 @@ export const Header: React.FC<HeaderProps> = ({
                 </span>
               </div>
             </div>
-
-            {/* DISCONNECT */}
             {(roomCode || activeChannel) && (
               <button
                 className="
@@ -161,8 +153,6 @@ export const Header: React.FC<HeaderProps> = ({
                 <Power size={15} />
               </button>
             )}
-
-            {/* SETTINGS */}
             <button
               className="
               w-9 h-9
@@ -181,8 +171,6 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
         </div>
-
-        {/* MOBILE NAV */}
         <nav className="md:hidden mt-3">
           <div
             className={`

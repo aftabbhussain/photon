@@ -29,7 +29,7 @@ export const Footer:React.FC=()=>{
 
           <div className="mt-8 pt-5 border-t border-[#222938] flex flex-col sm:flex-row justify-between gap-2 text-[11px] text-slate-600">
             <span>© {new Date().getFullYear()} Photon</span>
-            <span>Direct • Private • Peer-to-Peer</span>
+            <a href="https://github.com/aftabbhussain"><span>Aftab Hussain</span></a>
           </div>
         </div>
       </div>
