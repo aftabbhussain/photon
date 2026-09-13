@@ -2,7 +2,6 @@ import React from "react";
 import {UploadCloud, FileText} from "lucide-react";
 import { formatBytes } from "../../utils/formatters";
 import { TransferProgressBar } from "./TransferProgressBar";
-
 interface FileTransferCardProps{
   fileInputRef:React.RefObject<HTMLInputElement|null>;
   stagedFile:File|null;
@@ -18,7 +17,6 @@ interface FileTransferCardProps{
   onCancelTransfer:()=>void;
   onStartTransfer:()=>void;
 }
-
 export const FileTransferCard:React.FC<FileTransferCardProps>=({
   fileInputRef,
   stagedFile,
@@ -38,13 +36,13 @@ export const FileTransferCard:React.FC<FileTransferCardProps>=({
     <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-8 flex flex-col gap-6">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl md:text-5xl font-extrabold text-black tracking-tight leading-tight">
-          Share files directly from your device to anywhere across the globe!
+          Share files directly from your device to <span className="italic text-red-800">anywhere</span> across the globe!
         </h1>
         <h3 className="text-lg md:text-xl font-extrabold text-red-700 tracking-tight leading-tight">
           Drag &amp; Drop Files
         </h3>
 
-        <p className="text-black text-xs md:text-sm leading-relaxed max-w-lg">
+        <p className="text-slate-500 text-xs md:text-sm leading-relaxed max-w-lg">
           Photon can transfer up to 20GB of data! It uses direct peer-to-peer
           connection with zero intermediary storage.
         </p>
