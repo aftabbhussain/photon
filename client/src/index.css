@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+  ::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: white;
+    color: #ffffff;
+    font-family:
+      "Plus Jakarta Sans",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@keyframes scanLaser {
+  0% {
+    top: 5%;
+  }
+  100% {
+    top: 95%;
+  }
+}
+
+.animate-scan-laser {
+  animation: scanLaser 2s ease-in-out infinite alternate;
+}
+
+@keyframes photon-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.photon-reveal {
+  animation: photon-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.photon-reveal-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.photon-reveal-delay-2 {
+  animation-delay: 0.16s;
+}
+
+.photon-reveal-delay-3 {
+  animation-delay: 0.24s;
+}
+
+.photon-faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease;
+}
+
+.photon-faq-content > div {
+  overflow: hidden;
+}
+
+details[open] .photon-faq-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.photon-faq-icon {
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s ease;
+}
+
+details[open] .photon-faq-icon {
+  transform: rotate(45deg);
+}
+
+.photon-faq-summary {
+  transition: background-color 0.2s ease;
+}
+
+.photon-faq-summary:hover {
+  background-color: #f7f7f7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photon-reveal,
+  .photon-faq-content,
+  .photon-faq-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+}
