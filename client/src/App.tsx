@@ -363,7 +363,7 @@ const handleFileTransferStream = async () => {
 return (
   <>
     <Header isScrolled={isScrolled} roomCode={roomCode} activeChannel={activeChannel} onDisconnect={handleDisconnect} onOpenSettings={() => setSettingsModalOpen(true)} />
-    <div className="max-w-[1480px] lg:my-8 mx-auto px-3.5 md:px-8 py-3.5 md:py-7 min-h-[calc(100vh-65px)] flex flex-col" onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}>
+    <div className="max-w-[1480px] lg:my-6 mx-auto px-3.5 md:px-8 py-3.5 md:py-7 min-h-[calc(100vh-65px)] flex flex-col" onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 items-start">
         <FileTransferCard fileInputRef={fileInputRef} stagedFile={stagedFile} isDragOver={isDragOver} isTransferring={isTransferring} activeChannel={activeChannel} transferType={transferType} activeProgress={activeProgress} activeFileName={activeFileName} transferredBytes={transferredBytes} totalBytes={totalBytes} onFileInputChange={handleFileInputChange} onCancelTransfer={handleCancelTransfer} onStartTransfer={handleFileTransferStream} />
         <RoomConnectionCard roomCode={roomCode} inputCode={inputCode} setInputCode={setInputCode} activeChannel={activeChannel} signalingConnected={signalingConnected} webrtcState={webrtcState} shareUrl={shareUrl} copiedLink={copiedLink} copiedCode={copiedCode} handleCreateRoom={handleCreateRoom} handleJoinRoom={handleJoinRoom} handleDisconnect={handleDisconnect} openScanner={openScanner} copyShareLink={copyShareLink} copyRoomCode={copyRoomCode} setQrModalOpen={setQrModalOpen} />

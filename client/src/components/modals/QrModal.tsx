@@ -10,7 +10,6 @@ interface QrModalProps{
   onClose:()=>void;
   onCopyShareLink:()=>void;
 }
-
 export const QrModal:React.FC<QrModalProps>=({
   isOpen,
   roomCode,
@@ -20,14 +19,13 @@ export const QrModal:React.FC<QrModalProps>=({
   onCopyShareLink,
 })=>{
   if(!isOpen||!roomCode)return null;
-
   return(
     <div
       className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-xs"
       onClick={onClose}
     >
       <div
-        className="bg-white border border-slate-700/60 rounded-2xl md:rounded-3xl w-full max-w-[380px] p-6 relative text-center shadow-2xl"
+        className="bg-white border border-slate-700/60 rounded-2xl md:rounded-3xl w-full max-w-[500px] p-6 relative text-center shadow-2xl"
         onClick={(e)=>e.stopPropagation()}
       >
         <button
