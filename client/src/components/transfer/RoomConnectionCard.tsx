@@ -42,7 +42,7 @@ export const RoomConnectionCard:React.FC<RoomConnectionCardProps>=({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div className="bg-black border border-[#222938] rounded-xl p-4 md:p-5 flex flex-col gap-4">
           <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-            Sender Side
+            Create Room
           </span>
 
           <button
@@ -55,7 +55,7 @@ export const RoomConnectionCard:React.FC<RoomConnectionCardProps>=({
 
         <div className="bg-black border border-[#222938] rounded-xl p-4 md:p-5 flex flex-col gap-4">
           <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-            Receiver Side
+            Join Room
           </span>
 
           <div className="flex items-center gap-2">
@@ -219,7 +219,7 @@ export const RoomConnectionCard:React.FC<RoomConnectionCardProps>=({
           </span>
 
           <span
-            className={`text-xs font-bold ${activeChannel?"text-sky-400":"text-slate-400"}`}
+            className={`text-xs font-bold ${activeChannel?"text-emerald-400":"text-slate-400"}`}
           >
             {activeChannel?"Open":"Closed"}
           </span>
